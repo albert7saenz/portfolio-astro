@@ -1,0 +1,34 @@
+---
+import ThemeToggle from "./ThemeToggle.astro";
+
+const { t, currentLang } = Astro.props;
+---
+
+<nav class="flex items-center justify-around p-6 text-xl  ">
+    
+    <div class="font-bold">
+        Alberto<span class="text-red-500">Dev</span>
+    </div>
+
+    <div class="flex gap-6">
+        <a href="#" class=" dark:hover:text-gray-400">
+            {t.nav.home}
+        </a>
+        <a href="#" class=" dark:hover:text-gray-400">
+            {t.nav.about}
+        </a>
+        <a href="#" class=" dark:hover:text-gray-400">
+            {t.nav.projects}
+        </a>
+        <a href="#" class=" dark:hover:text-gray-400">
+            {t.nav.contact}
+        </a>
+    </div>
+
+    <div class="flex items-center gap-6">
+        <a href={currentLang === 'es' ? '/en' : '/es'}>
+            {currentLang === 'es' ? 'EN' : 'ES'}
+        </a>
+        <ThemeToggle />
+    </div>
+</nav>

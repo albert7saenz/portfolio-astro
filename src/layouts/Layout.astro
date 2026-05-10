@@ -10,10 +10,16 @@ import '../styles/global.css';
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
 		<title>Astro</title>
+
+		 <script is:inline>
+			const theme = localStorage.getItem('theme');
+			const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+			if (theme === 'dark' || (!theme && prefersDark)) {
+				document.documentElement.classList.add('dark');
+			}
+    	</script>
 	</head>
-	<body>
-		<slot>
-            
-        </slot>
+	<body class="bg-white text-black dark:bg-zinc-950 dark:text-white transition-colors duration-300">
+		<slot />
 	</body>
 </html>
