@@ -1,0 +1,158 @@
+---
+const { t } = Astro.props;
+
+const projects = [
+  {
+    name: "Devstragram",
+    description: "Clon sencillo de Instagram donde puedes registrarte, publicar fotos, reaccionar a publicaciones y seguir a otros usuarios.",
+    technologies: ["Laravel", "Eloquent ORM", "MySQL", "Blade"],
+    github: "https://github.com/albert7saenz",
+    demo: null,
+    color: "sky",
+  },
+  {
+    name: "Food Store",
+    description: "Tienda de comida con autenticación, menú de productos, carrito de compras con edición en tiempo real, gestión de órdenes y panel de administración para control de stock.",
+    technologies: ["Laravel", "Eloquent ORM", "React", "MySQL"],
+    github: "https://github.com/albert7saenz",
+    demo: null,
+    color: "violet",
+  },
+  {
+    name: "Pokédex API",
+    description: "API REST de una Pokédex que expone endpoints para consultar, crear y gestionar Pokémon con su información completa.",
+    technologies: ["NestJS", "TypeScript", "MongoDB"],
+    github: "https://github.com/albert7saenz",
+    demo: null,
+    color: "rose",
+  },
+];
+---
+
+<section
+  id="projects"
+  class="relative min-h-screen flex items-center overflow-hidden"
+>
+
+  <!-- Fondo abstracto -->
+  <div class="absolute inset-0 -z-10">
+    <svg
+      class="w-full h-full"
+      viewBox="0 0 1200 800"
+      xmlns="http://www.w3.org/2000/svg"
+      preserveAspectRatio="xMidYMid slice"
+    >
+      <circle class="shape1" cx="1100" cy="200" r="200" fill="rgba(139,92,246,0.05)" stroke="rgba(139,92,246,0.1)" stroke-width="1"/>
+      <circle class="shape2" cx="100" cy="600" r="150" fill="rgba(14,165,233,0.05)" stroke="rgba(14,165,233,0.08)" stroke-width="1"/>
+      <rect class="shape3" x="50" y="100" width="140" height="140" rx="28"
+        fill="rgba(14,165,233,0.04)" stroke="rgba(14,165,233,0.08)" stroke-width="1"
+        transform="rotate(20 120 170)"/>
+      <circle cx="600" cy="100" r="4" fill="rgba(139,92,246,0.2)"/>
+      <circle cx="300" cy="700" r="3" fill="rgba(14,165,233,0.2)"/>
+      <circle cx="900" cy="650" r="3" fill="rgba(139,92,246,0.15)"/>
+      <polygon points="1050,550 1090,620 1010,620"
+        fill="rgba(14,165,233,0.04)" stroke="rgba(14,165,233,0.07)" stroke-width="1"/>
+      <line x1="0" y1="0" x2="1200" y2="800" stroke="rgba(139,92,246,0.03)" stroke-width="120"/>
+    </svg>
+  </div>
+
+  <div class="w-11/12 md:w-3/4 mx-auto py-20 flex flex-col gap-16">
+
+    <!-- Título -->
+    <div class="flex flex-col gap-2">
+      <span class="text-sky-500 font-medium tracking-wide text-sm uppercase">Mi trabajo</span>
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">
+        Proyectos
+      </h2>
+      <div class="w-12 h-1 bg-sky-500 rounded-full mt-1"></div>
+    </div>
+
+    <!-- Grid de proyectos -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+      {projects.map((project) => (
+        <div class="group relative flex flex-col gap-4 p-6 rounded-2xl bg-white/60 dark:bg-white/5 border border-gray-200/60 dark:border-white/10 backdrop-blur-sm hover:border-sky-500/50 hover:shadow-lg hover:shadow-sky-500/10 transition-all duration-300 hover:-translate-y-1">
+
+          <!-- Header -->
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <div class={`w-3 h-3 rounded-full ${
+                project.color === 'sky' ? 'bg-sky-500' :
+                project.color === 'violet' ? 'bg-violet-500' :
+                'bg-rose-500'
+              }`}></div>
+              <h3 class="text-xl font-bold text-gray-900 dark:text-white">
+                {project.name}
+              </h3>
+            </div>
+
+            <!-- Links -->
+            <div class="flex gap-2">
+              {project.github && (
+                <a
+                  href={project.github}
+                  target="_blank"
+                  class="p-2 rounded-lg text-gray-500 dark:text-gray-400 hover:text-sky-500 dark:hover:text-sky-400 hover:bg-sky-500/10 transition-all duration-200"
+                  aria-label="GitHub"
+                >
+                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.605-3.369-1.342-3.369-1.342-.454-1.155-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/>
+                  </svg>
+                </a>
+              )}
+              {project.demo && (
+                <a
+                  href={project.demo}
+                  target="_blank"
+                  class="p-2 rounded-lg text-gray-500 dark:text-gray-400 hover:text-sky-500 dark:hover:text-sky-400 hover:bg-sky-500/10 transition-all duration-200"
+                  aria-label="Demo"
+                >
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                  </svg>
+                </a>
+              )}
+            </div>
+          </div>
+
+          <!-- Descripción -->
+          <p class="text-gray-600 dark:text-gray-400 leading-relaxed flex-1">
+            {project.description}
+          </p>
+
+          <!-- Tecnologías -->
+          <div class="flex flex-wrap gap-2 mt-auto">
+            {project.technologies.map((tech) => (
+              <span class="px-3 py-1 text-sm rounded-full bg-gray-100 dark:bg-white/10 text-gray-600 dark:text-gray-300 border border-gray-200/50 dark:border-white/10">
+                {tech}
+              </span>
+            ))}
+          </div>
+
+        </div>
+      ))}
+
+    </div>
+
+  </div>
+
+</section>
+
+<style>
+  .shape1 { animation: float1 8s ease-in-out infinite; }
+  .shape2 { animation: float2 10s ease-in-out infinite; }
+  .shape3 { animation: float3 7s ease-in-out infinite; }
+
+  @keyframes float1 {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-15px) rotate(3deg); }
+  }
+  @keyframes float2 {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(12px) rotate(-2deg); }
+  }
+  @keyframes float3 {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+</style>

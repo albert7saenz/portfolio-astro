@@ -4,31 +4,54 @@ import ThemeToggle from "./ThemeToggle.astro";
 const { t, currentLang } = Astro.props;
 ---
 
-<nav class="flex items-center justify-around p-6 text-xl  ">
+<nav class="font-semibold sticky top-0 z-50 flex items-center justify-around p-6 text-xl backdrop-blur-sm bg-white/80 dark:bg-zinc-950/80 border-b border-gray-200/50 dark:border-zinc-800/50">
     
-    <div class="font-bold">
-        Alberto<span class="text-red-500">Dev</span>
-    </div>
+  <div class="font-bold text-3xl font-inter tracking-wide">
+    Alberto<span class="text-blue-500">Dev</span>
+  </div>
 
-    <div class="flex gap-6">
-        <a href="#" class=" dark:hover:text-gray-400">
-            {t.nav.home}
-        </a>
-        <a href="#" class=" dark:hover:text-gray-400">
-            {t.nav.about}
-        </a>
-        <a href="#" class=" dark:hover:text-gray-400">
-            {t.nav.projects}
-        </a>
-        <a href="#" class=" dark:hover:text-gray-400">
-            {t.nav.contact}
-        </a>
-    </div>
+  <!-- Menú desktop -->
+  <div class="hidden md:flex gap-6 font-inter">
+    <a href="#Hero" class="hover:scale-110 transition-transform duration-200 text-gray-600 dark:text-gray-300 hover:text-sky-500 dark:hover:text-sky-400">{t.nav.home}</a>
+    <a href="#About" class=" hover:scale-110 transition-transform duration-200 text-gray-600 dark:text-gray-300 hover:text-sky-500 dark:hover:text-sky-400">{t.nav.about}</a>
+    <a href="#Projects" class="hover:scale-110 transition-transform duration-200 text-gray-600 dark:text-gray-300 hover:text-sky-500 dark:hover:text-sky-400">{t.nav.projects}</a>
+    <a href="#Contact" class="hover:scale-110 transition-transform duration-200 text-gray-600 dark:text-gray-300 hover:text-sky-500 dark:hover:text-sky-400">{t.nav.contact}</a>
+  </div>
 
-    <div class="flex items-center gap-6">
-        <a href={currentLang === 'es' ? '/en' : '/es'}>
-            {currentLang === 'es' ? 'EN' : 'ES'}
-        </a>
-        <ThemeToggle />
-    </div>
+  <div class="flex items-center gap-4">
+    <a href={currentLang === 'es' ? '/en' : '/es'}>
+      {currentLang === 'es' ? 'EN' : 'ES'}
+    </a>
+    <ThemeToggle />
+
+    <!-- Botón hamburguesa (solo móvil) -->
+    <button id="menuBtn" class="md:hidden" aria-label="Abrir menú">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path id="iconOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+        <path id="iconClose" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+      </svg>
+    </button>
+  </div>
 </nav>
+
+<!-- Menú móvil -->
+<div id="mobileMenu" class="hidden md:hidden flex-col gap-4 px-6 pb-6 text-xl">
+  <a href="#Hero" class="text-gray-600 dark:text-gray-300 hover:text-sky-500 dark:hover:text-sky-400 transition-colors duration-200">{t.nav.home}</a>
+  <a href="#About" class="text-gray-600 dark:text-gray-300 hover:text-sky-500 dark:hover:text-sky-400 transition-colors duration-200">{t.nav.about}</a>
+  <a href="#Projects" class="text-gray-600 dark:text-gray-300 hover:text-sky-500 dark:hover:text-sky-400 transition-colors duration-200">{t.nav.projects}</a>
+  <a href="#Contact" class="text-gray-600 dark:text-gray-300 hover:text-sky-500 dark:hover:text-sky-400 transition-colors duration-200">{t.nav.contact}</a>
+</div>
+
+<script>
+  const btn = document.getElementById('menuBtn');
+  const menu = document.getElementById('mobileMenu');
+  const iconOpen = document.getElementById('iconOpen');
+  const iconClose = document.getElementById('iconClose');
+
+  btn?.addEventListener('click', () => {
+    const isOpen = menu?.classList.toggle('hidden');
+    menu?.classList.toggle('flex', !isOpen);
+    iconOpen?.classList.toggle('hidden');
+    iconClose?.classList.toggle('hidden');
+  });
+</script>

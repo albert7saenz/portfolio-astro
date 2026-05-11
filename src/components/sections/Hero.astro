@@ -1,0 +1,117 @@
+---
+const { t } = Astro.props;
+---
+
+<section
+  id="Hero"
+  class="relative min-h-screen flex items-center overflow-hidden"
+>
+
+  <!-- Fondo abstracto SVG -->
+  <div class="absolute inset-0 -z-10">
+    <svg
+      class="w-full h-full"
+      viewBox="0 0 1200 800"
+      xmlns="http://www.w3.org/2000/svg"
+      preserveAspectRatio="xMidYMid slice"
+    >
+      <!-- Círculos flotantes -->
+      <circle class="shape1" cx="1050" cy="120" r="220" fill="rgba(14,165,233,0.06)" stroke="rgba(14,165,233,0.12)" stroke-width="1"/>
+      <circle class="shape2" cx="1100" cy="600" r="140" fill="rgba(99,102,241,0.06)" stroke="rgba(99,102,241,0.1)" stroke-width="1"/>
+      <circle class="shape3" cx="900" cy="380" r="90" fill="rgba(14,165,233,0.04)" stroke="rgba(14,165,233,0.08)" stroke-width="0.5"/>
+
+      <!-- Rectángulos rotados -->
+      <rect class="shape2" x="80" y="500" width="160" height="160" rx="32"
+        fill="rgba(99,102,241,0.04)" stroke="rgba(99,102,241,0.08)" stroke-width="1"
+        transform="rotate(15 160 580)"/>
+      <rect class="shape3" x="900" y="60" width="100" height="100" rx="20"
+        fill="rgba(14,165,233,0.05)" stroke="rgba(14,165,233,0.1)" stroke-width="0.5"
+        transform="rotate(-20 950 110)"/>
+
+      <!-- Línea diagonal suave -->
+      <line x1="0" y1="800" x2="1200" y2="0" stroke="rgba(14,165,233,0.03)" stroke-width="120"/>
+
+      <!-- Puntos decorativos -->
+      <circle cx="300" cy="200" r="4" fill="rgba(14,165,233,0.25)"/>
+      <circle cx="550" cy="100" r="3" fill="rgba(99,102,241,0.25)"/>
+      <circle cx="750" cy="650" r="4" fill="rgba(14,165,233,0.2)"/>
+      <circle cx="200" cy="600" r="3" fill="rgba(99,102,241,0.2)"/>
+
+      <!-- Triángulos sutiles -->
+      <polygon points="600,80 650,160 550,160"
+        fill="rgba(99,102,241,0.04)" stroke="rgba(99,102,241,0.07)" stroke-width="1"/>
+      <polygon points="150,650 185,710 115,710"
+        fill="rgba(14,165,233,0.05)" stroke="rgba(14,165,233,0.08)" stroke-width="0.5"/>
+    </svg>
+  </div>
+
+  <!-- Contenido -->
+  <div class="flex flex-col md:flex-row items-center gap-8 w-11/12 md:w-3/4 mx-auto py-20">
+
+    <!-- Texto -->
+    <div class="w-full md:w-1/2 flex flex-col gap-5">
+      <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold leading-tight">
+        {t.hero.title}
+        <span class="text-sky-500">Alberto Saenz</span>
+      </h1>
+
+      <p class="text-gray-600 dark:text-gray-400 text-2xl">
+        {t.hero.description}
+      </p>
+
+      <!-- Redes sociales -->
+      <div class="flex gap-3 bg-gray-600 dark:bg-white/10 backdrop-blur-sm border border-white/10 p-3 rounded-lg w-max">
+        <a href="https://github.com/albert7saenz" target="_blank"
+          class="p-2 rounded-md bg-white/10 hover:bg-white/20  hover:scale-110 transition-transform duration-200">
+          <img src="/img/github.png" alt="GitHub" class="w-6 h-6">
+        </a>
+        <a href="https://www.linkedin.com/in/alberto-saenz-854919398/" target="_blank"
+          class="p-2 rounded-md bg-white/10 hover:bg-white/20  hover:scale-110 transition-transform duration-200">
+          <img src="/img/linkedln.png" alt="LinkedIn" class="w-6 h-6">
+        </a>
+        <a href="mailto:tucorreo@gmail.com" target="_blank"
+          class="p-2 rounded-md bg-white/10 hover:bg-white/20  hover:scale-110 transition-transform duration-200">
+          <img src="/img/email.png" alt="Email" class="w-6 h-6">
+        </a>
+      </div>
+    </div>
+
+    <!-- Foto -->
+    <div class="w-full md:w-1/2 flex justify-center">
+      <div class="w-64 h-64 rounded-full border-2 border-sky-500/30 bg-sky-500/10 flex items-center justify-center text-gray-400">
+        foto
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Scroll down -->
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
+    <span class="text-sm text-gray-400">Scroll</span>
+    <a href="#about">
+      <svg class="w-5 h-5 text-gray-400 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+      </svg>
+    </a>
+  </div>
+
+</section>
+
+<style>
+  .shape1 { animation: float1 7s ease-in-out infinite; }
+  .shape2 { animation: float2 9s ease-in-out infinite; }
+  .shape3 { animation: float3 6s ease-in-out infinite; }
+
+  @keyframes float1 {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-15px) rotate(3deg); }
+  }
+  @keyframes float2 {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(12px) rotate(-2deg); }
+  }
+  @keyframes float3 {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+</style>

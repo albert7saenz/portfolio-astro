@@ -1,10 +1,16 @@
 ---
 import Navbar from '../../components/layout/Navbar.astro';
 import Layout from '../../layouts/Layout.astro';
+import Hero from '../../components/sections/Hero.astro';
 import { es } from '../../i18n/es.ts';
+import About from '../../components/sections/About.astro';
+import Proyects from '../../components/sections/Proyects.astro';
 ---
 
 
 <Layout>
-    <Navbar t={es} currentLang="es"/>   
+    <Navbar t={es} currentLang="es"/>
+    <Hero t={es} />
+    <About t={es} />
+    <Proyects t={es} />
 </Layout>
